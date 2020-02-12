@@ -53,6 +53,8 @@ Module.register("MMM-Canteen", {
     if (notification == "MEALS") {
       if (payload.length) {
         this.closed = false;
+        payload.pop(); // removes salads from list, since no price and always avaiable
+        this.sendNotification('CANTEEN_PLAN', payload)
         this.meals = payload;
         this.log(this.meals);
       }
